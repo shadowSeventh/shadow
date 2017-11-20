@@ -2,7 +2,7 @@
 title: hexo+gitPage+travis-ci自动部署
 date: 2017-11-20 15:33:22
 tags:
-description: 之前整理笔记一直在自己的leanote私服上放着，后来发现笔记越来越多，也很乱！于是，狠下决心花些时间把笔记好好整理一下。所以，这次打算放gitPage上，travis-ci做持续构建
+description: 之前整理笔记一直在自己的leanote私服上放着，后来发现笔记越来越多，也很乱！于是，狠下决心花些时间把笔记好好整理一下。所以，这次打算放gitPage上，travis-ci做持续构建,做到本地markdown文件提交到git后，自动部署到gitPage上，简单省事！而且Hexo提供了很多主题模板，也就不重复造轮子了！
 ---
 
 ## Hexo 填坑之路
@@ -28,4 +28,5 @@ cd <folder>
 npm install
 
 ```
+### Hexo相关配置
 
