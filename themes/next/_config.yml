@@ -81,13 +81,13 @@ index_with_subtitle: false
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, question icon will be loaded.
 menu:
   home: / || home
-  about: /about/ || user
-  tags: /tags/ || tags
   categories: /categories/ || th
   archives: /archives/ || archive
-  schedule: /schedule/ || calendar
-  sitemap: /sitemap.xml || sitemap
-  #commonweal: /404/ || heartbeat
+  tags: /tags/ || tags
+#  schedule: /schedule/ || calendar
+#  sitemap: /sitemap.xml || sitemap
+  about: /about/ || user
+#  commonweal: /404/ || heartbeat
 
 # Enable/Disable menu icons.
 menu_icons:
@@ -340,8 +340,8 @@ han: false
 #swiftype_key:
 
 # Baidu Analytics ID
-#baidu_analytics:
-
+baidu_analytics:
+  78bdc7bac631bc61ed24c48a35c51b78
 # Duoshuo ShortName
 #duoshuo_shortname:
 
@@ -470,8 +470,8 @@ rating:
 # You can visit https://leancloud.cn get AppID and AppKey.
 leancloud_visitors:
   enable: false
-  app_id: #<app_id>
-  app_key: #<app_key>
+  app_id: yckaBYQ319mO4VlCNOqc6228-gzGzoHsz
+  app_key: yGBbL1gXFa7mmTulVNz8Ltst
 
 # Show PV/UV of the website/page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi/
