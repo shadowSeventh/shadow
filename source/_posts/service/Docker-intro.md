@@ -1,5 +1,7 @@
 ---
 title : Docker-intro
+categories: 服务器
+tags: [docker]
 description: docker的一些基本操作
 ---
 

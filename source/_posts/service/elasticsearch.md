@@ -1,6 +1,7 @@
 ---
 title: elasticsearch
-categories: 技术研究
+categories: 服务器
+tags: [elasticsearch]
 description: "elasticsearch docker安装以及常用操作"
 ---
 

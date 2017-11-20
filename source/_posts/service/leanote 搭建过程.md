@@ -1,6 +1,7 @@
 ---
 title: leanote 搭建过程
 categories: 服务器
+tags: [server]
 description: 久闻leanote大名，今天入坑试一试
 ---
 ## 安装 golang

@@ -2,6 +2,7 @@
 title : 一个mongo备份的脚本
 description: 一个mongo备份的脚本
 date: 2017-10-21 06:49:50
+tags: [mongo,shell]
 comments: false
 ---
 ### 一个mongo备份的脚本
