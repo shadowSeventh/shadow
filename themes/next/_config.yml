@@ -696,7 +696,6 @@ vendors:
   # Internal version: 1.0.0
   # https://github.com/hustcc/canvas-nest.js
   canvas_nest:
-#    color: 51,51,51
 
   # three
   three:
