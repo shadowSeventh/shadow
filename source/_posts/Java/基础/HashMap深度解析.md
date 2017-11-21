@@ -157,6 +157,29 @@ void resize(int i)
 
 当多个线程同时检测到总数量超过门限值的时候就会同时调用resize操作，各自生成新的数组并rehash后赋给该map底层的数组table，结果最终只有最后一个线程生成的新数组被赋给table变量，其他线程的均会丢失。而且当某些线程已经完成赋值而其他线程刚开始的时候，就会用已经被赋值的table作为原始数组，这样也会有问题。
 
+### 多线程下使用HashMap
+多线程下使用HashMap，几种方案：
 
-参考资料：[HashMap为什么线程不安全](http://blog.csdn.net/a_lele123/article/details/47660869)
+* 在外部包装HashMap，实现同步机制
+* 使用Map m = Collections.synchronizedMap(new HashMap(...));，这里就是对HashMap做了一次包装
+* 使用java.util.HashTable，效率最低
+* 使用java.util.concurrent.ConcurrentHashMap，相对安全，效率较高
+
+## HashMap和HashTable
+
+### HashMap和Hashtable的区别
+HashMap和Hashtable都实现了Map接口，但决定用哪一个之前先要弄清楚它们之间的分别。主要的区别有：线程安全性，同步(synchronization)，以及速度。
+
+* HashMap几乎可以等价于Hashtable，除了HashMap是非synchronized的，并可以接受null(HashMap可以接受为null的键值(key)和值(value)，而Hashtable则不行)。
+* HashMap是非synchronized，而Hashtable是synchronized，这意味着Hashtable是线程安全的，多个线程可以共享一个Hashtable；而如果没有正确的同步的话，多个线程是不能共享HashMap的。Java 5提供了ConcurrentHashMap，它是HashTable的替代，比HashTable的扩展性更好。
+* 另一个区别是HashMap的迭代器(Iterator)是fail-fast迭代器，而Hashtable的enumerator迭代器不是fail-fast的。所以当有其它线程改变了HashMap的结构（增加或者移除元素），将会抛出ConcurrentModificationException，但迭代器本身的remove()方法移除元素则不会抛出ConcurrentModificationException异常。但这并不是一个一定发生的行为，要看JVM。这条同样也是Enumeration和Iterator的区别。
+* 由于Hashtable是线程安全的也是synchronized，所以在单线程环境下它比HashMap要慢。如果你不需要同步，只需要单一线程，那么使用HashMap性能要好过Hashtable。
+* HashMap不能保证随着时间的推移Map中的元素次序是不变的。
+
+
+参考资料：
+[HashMap为什么线程不安全](http://blog.csdn.net/a_lele123/article/details/47660869)
+[HashMap深度解析(一)](http://blog.csdn.net/ghsau/article/details/16843543/)
+[HashMap深度解析(二)](http://blog.csdn.net/ghsau/article/details/16890151)
+[HashMap和Hashtable的区别](http://www.importnew.com/7010.html)
 
