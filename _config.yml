@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://blog.seventh.party/
+url: http://blog.seventh.party/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -73,6 +73,12 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: next
+
+algolia:
+  applicationID: '68RK1GBIDZ'
+  apiKey: '2cde5cb450401b66961edbc247dfda4d'
+  indexName: 'blog'
+  chunkSize: 5000
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

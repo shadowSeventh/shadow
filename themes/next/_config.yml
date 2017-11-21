@@ -86,7 +86,7 @@ menu:
   tags: /tags/ || tags
 #  schedule: /schedule/ || calendar
 #  sitemap: /sitemap.xml || sitemap
-  about: /about/ || user
+  # about: /about/ || user
 #  commonweal: /404/ || heartbeat
 
 # Enable/Disable menu icons.
@@ -521,7 +521,7 @@ calendar:
 
 # Algolia Search
 algolia_search:
-  enable: false
+  enable: true
   hits:
     per_page: 10
   labels:
