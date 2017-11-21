@@ -23,6 +23,6 @@ install:
   - npm install
   - export HEXO_ALGOLIA_INDEXING_KEY=2cde5cb450401b66961edbc247dfda4d
 script:
-  - hexo algolia
   - hexo clean
+  - hexo algolia
   - hexo g -d
