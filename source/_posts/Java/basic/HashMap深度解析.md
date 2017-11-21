@@ -9,7 +9,7 @@ description: HashMap可以说是Java中最常用的集合类框架之一，是Ja
 ## HashMap认知
 了解HashMap之前，我们先看看Object类的两个方法hashCode和equals。
 
-详情参考* [深入equals方法](http://git-scm.com/book/zh)
+详情参考 [深入equals方法](深入equals方法.md)
 
 众所周知，HashMap是一个用于存储Key-Value键值对的集合，每一个键值对也叫做Entry。这些个键值对（Entry）分散存储在一个数组当中，这个数组就是HashMap的主干。
 
