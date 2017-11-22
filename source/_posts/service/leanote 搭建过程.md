@@ -1,5 +1,6 @@
 ---
 title: leanote 搭建过程
+date: 2017-11-20 10:34:22
 categories: 服务器
 tags: [server]
 description: 久闻leanote大名，今天入坑试一试

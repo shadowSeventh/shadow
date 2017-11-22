@@ -1,5 +1,6 @@
 ---
 title: elasticsearch
+date: 2017-11-20 10:34:22
 categories: 服务器
 tags: [elasticsearch]
 description: "elasticsearch docker安装以及常用操作"
