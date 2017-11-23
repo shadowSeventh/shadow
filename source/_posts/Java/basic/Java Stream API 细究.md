@@ -1,8 +1,8 @@
 ---
 title: Java Stream API 细究
-date: 2017-11-21 10:33:22
+date: 2017-11-23 10:33:22
 categories: Java
-tags: [Java]
+tags: [Java,Lambda,Stream]
 description: 昨天突然看到一篇关于JDK1.8 Stream 讲解的文章，之前一直是简单的使用，并没有仔细分析过其中的细节。仅仅做到了知其然，看了那位大牛的博客后，打算花一些时间，尽力做到知其所以然。
 ---
 
