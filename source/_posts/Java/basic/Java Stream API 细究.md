@@ -525,10 +525,8 @@ Java 8之所以费这么大功夫引入函数式编程，原因有二：
 
 | 操作类型       | 接口方法       |
 | ------------- |:-------------:|
-| 中间操作       | concat() distinct() filter() flatMap() limit() map() peek() 
-skip() sorted() parallel() sequential() unordered()|
-| 结束操作       | allMatch() anyMatch() collect() count() findAny() findFirst() 
-forEach() forEachOrdered() max() min() noneMatch() reduce() toArray()|
+| 中间操作       | concat() distinct() filter() flatMap() limit() map() peek() skip() sorted() parallel() sequential() unordered()|
+| 结束操作       | allMatch() anyMatch() collect() count() findAny() findFirst() forEach() forEachOrdered() max() min() noneMatch() reduce() toArray()|
 
 区分中间操作和结束操作最简单的方法，就是看方法的返回值，返回值为stream的大都是中间操作，否则是结束操作。
 ### stream方法使用
