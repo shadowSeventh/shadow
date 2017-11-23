@@ -317,3 +317,178 @@ Collections.sort(list, new Comparator<String>(){
 ArrayList<String> list = new ArrayList<>(Arrays.asList("I", "love", "you", "too"));
 list.sort((str1, str2) -> str1.length()-str2.length());
 ```
+#### spliterator()
+方法签名为`Spliterator<E> spliterator()`，该方法返回容器的可拆分迭代器。从名字来看该方法跟`iterator()`方法有点像，我们知道`Iterator`是用来迭代容器的，`Spliterator`也有类似作用，但二者有如下不同：
+
+* `Spliterator`既可以像`Iterator`那样逐个迭代，也可以批量迭代。批量迭代可以降低迭代的开销。
+* `Spliterator`是可拆分的，一个`Spliterator`可以通过调用`Spliterator<T> trySplit()`方法来尝试分成两个。一个是this，另一个是新返回的那个，这两个迭代器代表的元素没有重叠。
+
+可通过（多次）调用`Spliterator.trySplit()`方法来分解负载，以便多线程处理。
+
+#### stream()和parallelStream()
+`stream()`和`parallelStream()`分别返回该容器的`Stream`视图表示，不同之处在于`parallelStream()`返回并行的`Stream`。
+### Map中的新方法
+#### forEach()
+该方法签名为`void forEach(BiConsumer<? super K,? super V> action)`，作用是对Map中的每个映射执行`action`指定的操作，其中`BiConsumer`是一个函数接口，里面有一个待实现方法`void accept(T t, U u)`。`BinConsumer`接口名字和`accept()`方法名字都不重要，请不要记忆他们。
+
+需求：假设有一个数字到对应英文单词的Map，请输出Map中的所有映射关系．
+
+Java7以及之前经典的代码如下：
+```java
+// Java7以及之前迭代Map
+HashMap<Integer, String> map = new HashMap<>();
+map.put(1, "one");
+map.put(2, "two");
+map.put(3, "three");
+for(Map.Entry<Integer, String> entry : map.entrySet()){
+    System.out.println(entry.getKey() + "=" + entry.getValue());
+}
+```
+使用`Map.forEach()`方法，结合匿名内部类，代码如下：
+```java
+// 使用forEach()结合匿名内部类迭代Map
+HashMap<Integer, String> map = new HashMap<>();
+map.put(1, "one");
+map.put(2, "two");
+map.put(3, "three");
+map.forEach(new BiConsumer<Integer, String>(){
+    @Override
+    public void accept(Integer k, String v){
+        System.out.println(k + "=" + v);
+    }
+});
+```
+上述代码调用`forEach()`方法，并使用匿名内部类实现`BiConsumer`接口。当然，实际场景中没人使用匿名内部类写法，因为有Lambda表达式：
+```java
+// 使用forEach()结合Lambda表达式迭代Map
+HashMap<Integer, String> map = new HashMap<>();
+map.put(1, "one");
+map.put(2, "two");
+map.put(3, "three");
+map.forEach((k, v) -> System.out.println(k + "=" + v));
+}
+```
+#### getOrDefault()
+该方法跟Lambda表达式没关系，但是很有用。方法签名为`V getOrDefault(Object key, V defaultValue)`，作用是按照给定的`key`查询Map中对应的`value`，如果没有找到则返回`defaultValue`。使用该方法程序员可以省去查询指定键值是否存在的麻烦．
+
+需求；假设有一个数字到对应英文单词的Map，输出4对应的英文单词，如果不存在则输出`NoValue`
+```java
+// 查询Map中指定的值，不存在时使用默认值
+HashMap<Integer, String> map = new HashMap<>();
+map.put(1, "one");
+map.put(2, "two");
+map.put(3, "three");
+// Java7以及之前做法
+if(map.containsKey(4)){ // 1
+    System.out.println(map.get(4));
+}else{
+    System.out.println("NoValue");
+}
+// Java8使用Map.getOrDefault()
+System.out.println(map.getOrDefault(4, "NoValue")); // 2
+```
+#### putIfAbsent()
+该方法跟Lambda表达式没关系，但是很有用。方法签名为`V putIfAbsent(K key, V value)`，作用是只有在不存在key值的映射或映射值为`null`时，才将`value`指定的值放入到Map中，否则不对Map做更改．该方法将条件判断和赋值合二为一，使用起来更加方便
+#### remove()
+我们都知道Map中有一个`remove(Object key)`方法，来根据指定`key`值删除Map中的映射关系；Java8新增了`remove(Object key, Object value)`方法，只有在当前Map中`key`正好映射到`value`时才删除该映射，否则什么也不做．
+#### replace()
+在Java7及以前，要想替换Map中的映射关系可通过`put(K key, V value)`方法实现，该方法总是会用新值替换原来的值．为了更精确的控制替换行为，Java8在Map中加入了两个`replace()`方法，分别如下：
+
+* `replace(K key, V value)`，只有在当前Map中`key`的映射存在时才用`value`去替换原来的值，否则什么也不做．
+* `replace(K key, V oldValue, V newValue)`，只有在当前Map中key的映射存在且等于`oldValue`时才用`newValue`去替换原来的值，否则什么也不做．
+#### replaceAll()
+该方法签名为`replaceAll(BiFunction<? super K,? super V,? extends V> function)`，作用是对Map中的每个映射执行`function`指定的操作，并用`function`的执行结果替换原来的`value`，其中`BiFunction`是一个函数接口，里面有一个待实现方法`R apply(T t, U u)`．不要被如此多的函数接口吓到，因为使用的时候根本不需要知道他们的名字．
+
+需求：假设有一个数字到对应英文单词的Map，请将原来映射关系中的单词都转换成大写．
+
+Java7以及之前经典的代码如下：
+```java
+// Java7以及之前替换所有Map中所有映射关系
+HashMap<Integer, String> map = new HashMap<>();
+map.put(1, "one");
+map.put(2, "two");
+map.put(3, "three");
+for(Map.Entry<Integer, String> entry : map.entrySet()){
+    entry.setValue(entry.getValue().toUpperCase());
+}
+```
+使用`replaceAll()`方法结合匿名内部类，实现如下：
+```java
+// 使用replaceAll()结合匿名内部类实现
+HashMap<Integer, String> map = new HashMap<>();
+map.put(1, "one");
+map.put(2, "two");
+map.put(3, "three");
+map.replaceAll(new BiFunction<Integer, String, String>(){
+    @Override
+    public String apply(Integer k, String v){
+        return v.toUpperCase();
+    }
+});
+```
+上述代码调用`replaceAll()`方法，并使用匿名内部类实现`BiFunction`接口。更进一步的，使用Lambda表达式实现如下：
+```java
+// 使用replaceAll()结合Lambda表达式实现
+HashMap<Integer, String> map = new HashMap<>();
+map.put(1, "one");
+map.put(2, "two");
+map.put(3, "three");
+map.replaceAll((k, v) -> v.toUpperCase());
+```
+#### merge()
+该方法签名为`merge(K key, V value, BiFunction<? super V,? super V,? extends V> remappingFunction)`，作用是：
+
+* 如果Map中`key`对应的映射不存在或者为`null`，则将`value`（不能是null）关联到`key`上；
+* 否则执行`remappingFunction`，如果执行结果非`null`则用该结果跟`key`关联，否则在Map中删除`key`的映射．
+
+参数中`BiFunction`函数接口前面已经介绍过，里面有一个待实现方法`R apply(T t, U u)`．
+
+`merge()`方法虽然语义有些复杂，但该方法的用方式很明确，一个比较常见的场景是将新的错误信息拼接到原来的信息上，比如：
+
+`map.merge(key, newMsg, (v1, v2) -> v1+v2);`
+
+#### compute()
+该方法签名为`compute(K key, BiFunction<? super K,? super V,? extends V> remappingFunction)`，作用是把`remappingFunction`的计算结果关联到`key`上，如果计算结果为`null`，则在Map中删除`key`的映射．
+
+要实现上述`merge()`方法中错误信息拼接的例子，使用`compute()`代码如下：
+
+`map.compute(key, (k,v) -> v==null ? newMsg : v.concat(newMsg));`
+
+#### computeIfAbsent()
+该方法签名为`V computeIfAbsent(K key, Function<? super K,? extends V> mappingFunction)`，作用是：只有在当前Map中不存在`key`值的映射或映射值为`null`时，才调用`mappingFunction`，并在`mappingFunction`执行结果非`null`时，将结果跟`key`关联．
+
+Function是一个函数接口，里面有一个待实现方法`R apply(T t)`．
+
+`computeIfAbsent()`常用来对Map的某个`key`值建立初始化映射．比如我们要实现一个多值映射，Map的定义可能是`Map<K,Set<V>>`，要向Map中放入新值，可通过如下代码实现：
+```java
+Map<Integer, Set<String>> map = new HashMap<>();
+// Java7及以前的实现方式
+if(map.containsKey(1)){
+    map.get(1).add("one");
+}else{
+    Set<String> valueSet = new HashSet<String>();
+    valueSet.add("one");
+    map.put(1, valueSet);
+}
+// Java8的实现方式
+map.computeIfAbsent(1, v -> new HashSet<String>()).add("yi");
+```
+使用`computeIfAbsent()`将条件判断和添加操作合二为一，使代码更加简洁．
+#### computeIfPresent()
+该方法签名为`V computeIfPresent(K key, BiFunction<? super K,? super V,? extends V> remappingFunction)`，作用跟`computeIfAbsent()`相反，即，只有在当前Map中存在`key`值的映射且非`null`时，才调用`remappingFunction`，如果`remappingFunction`执行结果为`null`，则删除`key`的映射，否则使用该结果替换`key`原来的映射．
+
+这个函数的功能跟如下代码是等效的：
+```java
+// Java7及以前跟computeIfPresent()等效的代码
+if (map.get(key) != null) {
+    V oldValue = map.get(key);
+    V newValue = remappingFunction.apply(key, oldValue);
+    if (newValue != null)
+        map.put(key, newValue);
+    else
+        map.remove(key);
+    return newValue;
+}
+return null;
+```
+
