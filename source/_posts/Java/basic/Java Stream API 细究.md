@@ -957,3 +957,4 @@ List<String>results =
 
 参考资料：
 [《深入理解Java函数式编程》系列文章](http://www.cnblogs.com/CarpenterLee/p/6729368.html)
+[《深入理解Java 8 Lambda》系列文章](http://lucida.me/)
