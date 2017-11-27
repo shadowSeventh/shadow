@@ -87,16 +87,9 @@ public class TaskService implements Runnable {
     protected Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private QhShopProperties qhShopProperties;
-
-    @Autowired
-    private OrderRepo orderRepo;
-
-    @Autowired
     private LockRegistry lockRegistry;
 
     @Autowired()
-    @Qualifier("initThreadPool")
     private ThreadPoolTaskScheduler threadPoolTaskScheduler;
 
     private String jobName;
@@ -140,4 +133,24 @@ public class TaskService implements Runnable {
         }
     }
 }
+```
+```java
+    taskService.setJobName("111");
+    Date runTime = new Date(order.getDateCreated().getTime() + 30 * 60 * 1000);
+    taskService.start(runTime);
+```
+其实这里用的还是`java.util.concurrent`的`ScheduledExecutorService`看下面的源码就明白了
+```java
+@Override
+	public ScheduledFuture<?> schedule(Runnable task, Trigger trigger) {
+		ScheduledExecutorService executor = getScheduledExecutor();
+		try {
+			ErrorHandler errorHandler =
+					(this.errorHandler != null ? this.errorHandler : TaskUtils.getDefaultErrorHandler(true));
+			return new ReschedulingRunnable(task, trigger, executor, errorHandler).schedule();
+		}
+		catch (RejectedExecutionException ex) {
+			throw new TaskRejectedException("Executor [" + executor + "] did not accept task: " + task, ex);
+		}
+	}
 ```
