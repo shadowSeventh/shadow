@@ -41,7 +41,8 @@ public class TestQuartz {
 
 }
 ```
-```quartz.properties
+`quartz.properties`
+```
 #调度器名，默认名是QuartzScheduler
 org.quartz.scheduler.instanceName= TestQuartzScheduler
 
