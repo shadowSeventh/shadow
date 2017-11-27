@@ -1,7 +1,7 @@
 ---
 title: Scheduler
 date: 2017-11-27 10:33:22
-categories: taskScheduler
+categories: TaskScheduler
 tags: [Java,Task]
 description: 目前的 Web 应用，多数应用都具备任务调度的功能。本系列大致介绍了几种任务调度的 Java 实现方法，包括 Timer,Scheduler, Quartz 以及 JCron Tab，并对其优缺点进行比较
 ---
@@ -47,3 +47,97 @@ public class MainExecute {
 }
 ```
 ### Spring 所实现的 taskScheduler
+#### 核心类： 
+* `ScheduledAnnotationBeanPostProcessor`
+核心方法：
+
+`postProcessAfterInitialization`负责@Schedule注解的扫描，构建ScheduleTask
+
+`onApplicationEvent`spring容器加载完毕之后调用，ScheduleTask向ScheduledTaskRegistrar中注册, 调用ScheduledTaskRegistrar.afterPropertiesSet() 
+* `ScheduledTaskRegistrar`
+核心方法：
+
+`afterPropertiesSet`初始化所有定时器，启动定时器
+* `TaskScheduler`
+主要的实现类有三个`ThreadPoolTaskScheduler`,`ConcurrentTaskScheduler`,`TimerManagerTaskScheduler` 
+
+作用：这些类的作用主要是将`task`和`executor`用`ReschedulingRunnable`包装起来进行生命周期管理。 
+核心方法：
+
+`ScheduledFuture schedule`
+* `ReschedulingRunnable`
+核心方法：`schedule()`,`run()`
+
+使用demo
+```java
+@Configuration
+public class TaskConf {
+    @Bean
+    public ThreadPoolTaskScheduler initThreadPool() {
+        ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
+        taskScheduler.setPoolSize(20);
+        taskScheduler.initialize();
+        return taskScheduler;
+    }
+}
+```
+```java
+public class TaskService implements Runnable {
+
+    protected Logger log = LoggerFactory.getLogger(getClass());
+
+    @Autowired
+    private QhShopProperties qhShopProperties;
+
+    @Autowired
+    private OrderRepo orderRepo;
+
+    @Autowired
+    private LockRegistry lockRegistry;
+
+    @Autowired()
+    @Qualifier("initThreadPool")
+    private ThreadPoolTaskScheduler threadPoolTaskScheduler;
+
+    private String jobName;
+
+    public void setJobName(String jobName) {
+        this.jobName = jobName;
+    }
+
+    public String getLockKey(String key) {
+        StringBuilder buf = new StringBuilder();
+        buf.append(TaskService.class.getName())
+           .append("/").append(key).append("111");
+        return buf.toString();
+    }
+
+
+    public void start(Date date) {
+        threadPoolTaskScheduler.schedule(this, date);
+    }
+
+
+    @Override
+    public void run() {
+        String lockKey = getLockKey(jobName);
+        long waitLockTime = 1000;
+        Lock lock = lockRegistry.obtain(lockKey);
+        try {
+            if (!lock.tryLock(waitLockTime, TimeUnit.MILLISECONDS)) {
+                log.info("加锁失败，任务中止");
+                return;
+            }
+        } catch (InterruptedException e) {
+            log.warn("在等待加锁时被中止", e);
+            return;
+        }
+        try {
+            System.out.println("execute " + jobName);
+        } catch (Exception e) {
+        } finally {
+            lock.unlock();
+        }
+    }
+}
+```
