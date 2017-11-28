@@ -71,15 +71,16 @@ job由若干个`class`和`interface`实现。
 Job只有一个`execute(JobExecutionContext)`，`JobExecutionContext`保存了`job`的上下文信息，比如绑定的是哪个`trigger`。`job`实现类必须重写`execute()`，执行job实际上就是运行`execute()`。
 #### JobDetailImpl类 / JobDetail接口
 `JobDetailImpl`类实现了`JobDetail`接口，用来描述一个job，定义了job所有属性及其get/set方法。了解job拥有哪些属性，就能知道quartz能提供什么样的能力，下面笔者用表格列出job若干核心属性。
+
 |属性名	| 说明|
 |--------|-----------------------|
-|class|必须是job实现类（比如`JobImpl`），用来绑定一个具体job|
-|name|job名称。如果未指定，会自动分配一个唯一名称。所有job都必须拥有一个唯一name，如果两个job的name重复，则只有最前面的job能被调度|
-|group|job所属的组名|
-|description|job描述|
-|durability|是否持久化。如果job设置为非持久，当没有活跃的trigger与之关联的时候，job会自动从scheduler中删除。也就是说，非持久job的生命期是由trigger的存在与否决定的|
-|shouldRecover|是否可恢复。如果job设置为可恢复，一旦job执行时scheduler发生hard shutdown（比如进程崩溃或关机），当scheduler重启后，该job会被重新执行|
-|jobDataMap|除了上面常规属性外，用户可以把任意kv数据存入jobDataMap，实现job属性的无限制扩展，执行job时可以使用这些属性数据。此属性的类型是`JobDataMap`，实现了`Serializable`接口，可做跨平台的序列化传输|
+| class | 必须是job实现类（比如`JobImpl`），用来绑定一个具体job|
+| name | job名称。如果未指定，会自动分配一个唯一名称。所有job都必须拥有一个唯一name，如果两个job的name重复，则只有最前面的job能被调度|
+| group | job所属的组名 |
+| description | job描述 |
+| durability | 是否持久化。如果job设置为非持久，当没有活跃的trigger与之关联的时候，job会自动从scheduler中删除。也就是说，非持久job的生命期是由trigger的存在与否决定的 |
+| shouldRecover | 是否可恢复。如果job设置为可恢复，一旦job执行时scheduler发生hard shutdown（比如进程崩溃或关机），当scheduler重启后，该job会被重新执行|
+| jobDataMap | 除了上面常规属性外，用户可以把任意kv数据存入jobDataMap，实现job属性的无限制扩展，执行job时可以使用这些属性数据。此属性的类型是`JobDataMap`，实现了`Serializable`接口，可做跨平台的序列化传输 |
 
 #### JobBuilder类
 ```java
