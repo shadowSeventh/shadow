@@ -49,28 +49,27 @@ public class MainExecute {
 ### Spring 所实现的 taskScheduler
 #### 核心类
 * `ScheduledAnnotationBeanPostProcessor`
-
-核心方法：
-
-    `postProcessAfterInitialization`负责@Schedule注解的扫描，构建ScheduleTask
-
-    `onApplicationEvent`spring容器加载完毕之后调用，ScheduleTask向ScheduledTaskRegistrar中注册, 调用ScheduledTaskRegistrar.afterPropertiesSet() 
 * `ScheduledTaskRegistrar`
-
-核心方法：
-
-    `afterPropertiesSet`初始化所有定时器，启动定时器
 * `TaskScheduler`
-
-    主要的实现类有三个`ThreadPoolTaskScheduler`,`ConcurrentTaskScheduler`,`TimerManagerTaskScheduler` 
-
-    作用：这些类的作用主要是将`task`和`executor`用`ReschedulingRunnable`包装起来进行生命周期管理。 
-    核心方法：
-
-    `ScheduledFuture schedule`
 * `ReschedulingRunnable`
 
-    核心方法：`schedule()`,`run()`
+#### 主要方法
+ScheduledAnnotationBeanPostProcessor核心方法：
+* `postProcessAfterInitialization`负责@Schedule注解的扫描，构建ScheduleTask
+* `onApplicationEvent`spring容器加载完毕之后调用，ScheduleTask向ScheduledTaskRegistrar中注册, 调用ScheduledTaskRegistrar.afterPropertiesSet() 
+
+ScheduledTaskRegistrar核心方法：
+* `afterPropertiesSet`初始化所有定时器，启动定时器
+
+TaskScheduler作用及核心方法：
+
+* 主要的实现类有三个ThreadPoolTaskScheduler,ConcurrentTaskScheduler,TimerManagerTaskScheduler
+* 作用：这些类的作用主要是将`task`和`executor`用`ReschedulingRunnable`包装起来进行生命周期管理。 
+* 核心方法：`ScheduledFuture schedule`
+
+ReschedulingRunnable核心方法：
+* `schedule()`
+* `run()`
 
 使用demo
 ```java
