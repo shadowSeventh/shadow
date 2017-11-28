@@ -71,8 +71,8 @@ job由若干个`class`和`interface`实现。
 Job只有一个`execute(JobExecutionContext)`，`JobExecutionContext`保存了`job`的上下文信息，比如绑定的是哪个`trigger`。`job`实现类必须重写`execute()`，执行job实际上就是运行`execute()`。
 #### JobDetailImpl类 / JobDetail接口
 `JobDetailImpl`类实现了`JobDetail`接口，用来描述一个job，定义了job所有属性及其get/set方法。了解job拥有哪些属性，就能知道quartz能提供什么样的能力，下面笔者用表格列出job若干核心属性。
-|属性名	|说明|
-|--------:|-----------------------:|
+|属性名	| 说明|
+|--------|-----------------------|
 |class|必须是job实现类（比如`JobImpl`），用来绑定一个具体job|
 |name|job名称。如果未指定，会自动分配一个唯一名称。所有job都必须拥有一个唯一name，如果两个job的name重复，则只有最前面的job能被调度|
 |group|job所属的组名|
@@ -98,7 +98,7 @@ trigger由若干个class和interface实现。
 Trigger诸类保存了trigger所有属性，同job属性一样，了解trigger属性有助于我们了解quartz能提供什么样的能力，下面笔者用表格列出trigger若干核心属性。
 
 |属性名	|属性类型	|说明|
-|---------:|----------:|----------:|
+|---------|----------|----------|
 |name|所有trigger通用|trigger名称|
 |group|所有trigger通用|trigger所属的组名|
 |description|所有trigger通用|trigger描述|
