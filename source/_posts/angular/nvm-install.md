@@ -1,7 +1,7 @@
 ---
 title: nvm-install
 date: 2017-12-18 10:34:22
-categories: 框架
+categories: 前端
 tags: [angular,nvm]
 description: Mac下安装Node并切换taobao.org源
 ---
