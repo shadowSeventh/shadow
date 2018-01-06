@@ -3,7 +3,7 @@ title: Mac对NTFS进行读写操作
 date: 2017-12-20 10:34:22
 categories: PC
 tags: [OS,Mac]
-description: Mac下安装Node并切换taobao.org源
+description: Mac对NTFS进行读写操作
 ---
 
 ```bash
