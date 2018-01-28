@@ -16,6 +16,8 @@ everything      #快速文件查找
 ### MAC
 ```bash
 EasyFind    #快速文件查找
+
+handBrake   # 视频压缩格式转换软件
 ```
 ### firefox
 ```bash
