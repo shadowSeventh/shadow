@@ -28,7 +28,7 @@ swapon /newdisk.swp
 vim /etc/fstab
 #系统启动自动加载swap分区的配置文件，UUID即上面生成的ID
 
-UUID=83bb3f71-7310-4a28-826a-d807688aae2c swap swap defaults 0 0 
+UUID=7d903463-0738-44c3-91fa-3fa63b599017 swap swap defaults 0 0 
 ```
 
 附：
@@ -41,3 +41,21 @@ dd if=/dev/sda of=/dev/sdb          #实现硬盘对考，if是input file，of�
 #不可以用copy，copy是不能拷贝mbr
 dd if=/dev/zero of=/var/swap/file.swp bs=1024 count=65536   #如果不指定大小，它会一直写，直到硬盘空间被占满
 ```
+
+### bash_profile
+```bash
+# vi /etc/profile
+# vi ~/.bash_profile
+# vi ~/.bashrc
+export LS_OPTIONS='--color=auto' # 如果没有指定，则自动选择颜色
+export CLICOLOR='Yes' #是否输出颜色
+export LSCOLORS='Exfxcxdxbxegedabagacad' #指定颜色
+export PS1='\[\033[01;33m\]\u@\h\[\033[01;31m\] \W\$\[\033[00m\] '
+export LC_CTYPE=en_US.UTF-8
+
+alias ll='ls -l'
+alias tailf='tail -f'
+#echo ================ ~/.bash_profile
+source ~/.bashrc
+```
+
