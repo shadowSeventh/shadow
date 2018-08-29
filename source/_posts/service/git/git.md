@@ -1,9 +1,12 @@
 ---
 title : git部分技巧
+date: Fri Dec 15 2017 16:12:58 GMT+0800 (CST)
+categories:  git
+tags: [git]
 description: git部分技巧
-date: 2017-10-21 06:49:50
-comments: false
 ---
+
+
 * [Git中文手册](http://git-scm.com/book/zh)、
 * [git Refspec](http://git-scm.com/book/zh/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-The-Refspec)、
 * [Git Commit-ish/Tree-ish ](http://stackoverflow.com/questions/4044368/what-does-tree-ish-mean-in-git/18605496#18605496)
