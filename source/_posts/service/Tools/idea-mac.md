@@ -1,5 +1,5 @@
 ---
-title : idea-mac.md
+title : idea-mac
 date: Mon May 21 2018 09:21:54 GMT+0800 (CST)
 categories:  mac
 tags: [idea]

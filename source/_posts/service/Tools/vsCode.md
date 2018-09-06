@@ -1,5 +1,5 @@
 ---
-title : vsCode.md
+title : vsCode
 date: Wed Aug 29 2018 14:23:12 GMT+0800 (CST)
 categories:  vsCode
 tags: [vsCode]
