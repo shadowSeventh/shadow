@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="git,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="git部分技巧">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git部分技巧">
+<meta property="og:url" content="http://blog.bigspray.top/2017/12/15/service/git/git/index.html">
+<meta property="og:site_name" content="京九-猿">
+<meta property="og:description" content="git部分技巧">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-13T07:41:54.955Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git部分技巧">
+<meta name="twitter:description" content="git部分技巧">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '68RK1GBIDZ',
+      apiKey: '2cde5cb450401b66961edbc247dfda4d',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.bigspray.top/2017/12/15/service/git/git/">
+
+
+
+
+
+  <title>git部分技巧 | 京九-猿</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?78bdc7bac631bc61ed24c48a35c51b78";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">京九-猿</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.bigspray.top/2017/12/15/service/git/git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="京九-猿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="京九-猿">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">git部分技巧</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T08:12:58+00:00">
+                2017-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/15/service/git/git/" class="leancloud_visitors" data-flag-title="git部分技巧">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  git部分技巧
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li><a href="http://git-scm.com/book/zh" target="_blank" rel="noopener">Git中文手册</a>、</li>
+<li><a href="http://git-scm.com/book/zh/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-The-Refspec" target="_blank" rel="noopener">git Refspec</a>、</li>
+<li><a href="http://stackoverflow.com/questions/4044368/what-does-tree-ish-mean-in-git/18605496#18605496" target="_blank" rel="noopener">Git Commit-ish/Tree-ish </a></li>
+<li>git工作量统计： <a href="http://btpka3.github.io/js/node/git-stat/stat/" target="_blank" rel="noopener">查看</a>， <a href="https://github.com/btpka3/btpka3.github.com/blob/master/js/node/git-stat/" target="_blank" rel="noopener">源码</a></li>
+</ul>
+<h1 id="记住密码"><a href="#记住密码" class="headerlink" title="记住密码"></a>记住密码</h1><p>使用ssh协议，可以使用ssh key来免密码登录。但是如果使用 http/https 协议来clone，则可以参考 <a href="https://help.github.com/articles/caching-your-github-password-in-git/" target="_blank" rel="noopener">这里</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># Mac</span><br><span class="line">git credential-osxkeychain</span><br><span class="line">brew install git</span><br><span class="line">brew install git-lfs</span><br><span class="line">brew install gitk</span><br><span class="line"></span><br><span class="line">git config --global credential.helper osxkeychain</span><br><span class="line"></span><br><span class="line">git credential-osxkeychain erase</span><br><span class="line"></span><br><span class="line"># Windows</span><br><span class="line">git config --global credential.helper wincred</span><br><span class="line"></span><br><span class="line"># Linux</span><br><span class="line">git config --global credential.helper &apos;cache --timeout=3600&apos;   # 保存在内存中</span><br><span class="line"># 保存在磁盘上, 默认查找 ~/.git-credentials  $XDG_CONFIG_HOME/git/credentials</span><br><span class="line">git config credential.helper &apos;store --file=&lt;path&gt;&apos;</span><br></pre></td></tr></table></figure>
+<h1 id="git-lfs"><a href="#git-lfs" class="headerlink" title="git lfs"></a>git lfs</h1><p><a href="brew install git-lfs">git-lfs</a> </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">brew install git-lfs</span><br><span class="line"></span><br><span class="line">git lfs install</span><br><span class="line"><span class="built_in">cd</span> xxx.git</span><br><span class="line">git lfs track <span class="string">"*.psd"</span></span><br><span class="line">git add .gitattributes</span><br><span class="line">git add *.psd</span><br><span class="line">git commit -m <span class="string">"log msg"</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<h1 id="git-archive"><a href="#git-archive" class="headerlink" title="git archive"></a>git archive</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git archive --format=tar --remote=https://github.com/vozlt/nginx-module-vts.git HEAD | tar xf -</span><br></pre></td></tr></table></figure>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用户级的配置文件路径</span></span><br><span class="line">~/.gitconfig</span><br><span class="line"><span class="comment"># 配置用户身份</span></span><br><span class="line">git config --global user.name <span class="string">"zhangll"</span></span><br><span class="line">git config --global user.email zhangll@lizi.com</span><br><span class="line">git config --global core.editor vim</span><br><span class="line">git config --global merge.tool vimdiff</span><br><span class="line">git config --global push.default simple           <span class="comment"># 在 "git push" 时，会推到当前分支跟踪的远程分支（可能名称不同）</span></span><br><span class="line">git config --global core.filemode <span class="literal">false</span>           <span class="comment"># 忽略文件仅文件权限的变更（比如 old mode 100755  new mode 100644）</span></span><br><span class="line">git config --global color.ui auto                 <span class="comment"># git命令下会使用红色、绿色等来突出显示。</span></span><br><span class="line">git config --global branch.autosetuprebase always <span class="comment"># 在 "git pull" 时，总会自动rebase</span></span><br><span class="line">git config --global credential.helper cache       <span class="comment"># 在 clone `https` 类型的URL时，可减少用户名密码输入次数</span></span><br><span class="line">git config --global core.quotepath <span class="literal">false</span>          <span class="comment"># 在提交中文名称的文件时，不转义为 \350\256\256\346\200\273\347\273\223.xlsx</span></span><br><span class="line">git config --global core.ignorecase <span class="literal">false</span>         <span class="comment"># 文件名区分大小写 </span></span><br><span class="line">git config --list</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">git config --global http.proxy <span class="string">'socks5://127.0.0.1:9999'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git add path/file              <span class="comment"># 添加新文件</span></span><br><span class="line">git reset HEAD path/file       <span class="comment"># 取消添加</span></span><br><span class="line">git commit  -m <span class="string">"commit msg"</span>    <span class="comment"># 提交修改</span></span><br><span class="line">git push                       <span class="comment"># 推送到远程</span></span><br></pre></td></tr></table></figure>
+<h1 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h1><p><a href="https://cms-sw.github.io/tutorial-proxy.html" target="_blank" rel="noopener">参考</a></p>
+<h2 id="git-协议"><a href="#git-协议" class="headerlink" title="git 协议"></a>git 协议</h2><p>需要配置 ssh 的相关代理配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ~/.ssh/config  @ internal </span></span><br><span class="line">Host github.com</span><br><span class="line">    User                    git</span><br><span class="line">    ProxyCommand            ssh user@gateway.host /usr/bin/nc %h %p</span><br><span class="line">    IdentityFile             ~/.ssh/id_rsa.gitlab</span><br></pre></td></tr></table></figure>
+<h2 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --mirror git@gitlab.com:kingsilk/qh-env.wiki.git</span><br><span class="line"><span class="built_in">cd</span> qh-env.wiki.git</span><br><span class="line">git remote update</span><br></pre></td></tr></table></figure>
+<h2 id="http-https-协议"><a href="#http-https-协议" class="headerlink" title="http, https 协议"></a>http, https 协议</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @gateway  开启 socks5 代理</span></span><br><span class="line">/usr/bin/ssh proxy@gateway.kingsilk.net \</span><br><span class="line">    -C -N -g -D gateway.kingsilk.net:9999 \</span><br><span class="line">    -o ExitOnForwardFailure=yes \</span><br><span class="line">    -o ServerAliveInterval=60</span><br><span class="line"></span><br><span class="line"><span class="comment"># @internal 配置 git 使用代理</span></span><br><span class="line">git config --global http.proxy socks5://gateway.kingsilk.net:9999</span><br><span class="line"><span class="comment">#git config core.gitproxy  socks5://prod11.kingsilk.net:9999</span></span><br></pre></td></tr></table></figure>
+<h2 id="git-协议-1"><a href="#git-协议-1" class="headerlink" title="git 协议"></a>git 协议</h2><p>参考: <a href="https://www.emilsit.net/blog/archives/how-to-use-the-git-protocol-through-a-http-connect-proxy/" target="_blank" rel="noopener">1</a>、<br><a href="https://gist.github.com/sit/49288" target="_blank" rel="noopener">2</a>、<br><a href="https://github.com/cms-sw/cms-git-tools/blob/master/git-proxy" target="_blank" rel="noopener">git-proxy@cms-sw/cms-git-tools</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @gateway  开启 socks5 代理</span></span><br><span class="line">/usr/bin/ssh proxy@gateway.kingsilk.net \</span><br><span class="line">    -C -N -g -D gateway.kingsilk.net:9999 \</span><br><span class="line">    -o ExitOnForwardFailure=yes \</span><br><span class="line">    -o ServerAliveInterval=60</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">vi /data0/git-proxy</span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">nc -x gateway.kingsilk.net:9999 <span class="variable">$1</span> <span class="variable">$2</span></span><br><span class="line"></span><br><span class="line">chmod +x /data0/git-proxy</span><br><span class="line"></span><br><span class="line">git config --global core.gitproxy <span class="string">"/data0/git-proxy"</span></span><br><span class="line">git config --global socks.proxy <span class="string">"localhost:1080"</span></span><br></pre></td></tr></table></figure>
+<h1 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h1><p>参考：<a href="http://gitref.org/" target="_blank" rel="noopener">http://gitref.org/</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 远程服务器创建</span></span><br><span class="line">mkdir lizi-tmp</span><br><span class="line"><span class="built_in">cd</span> lizi-tmp</span><br><span class="line">git --bare init</span><br><span class="line"></span><br><span class="line"><span class="comment"># 本地创建</span></span><br><span class="line">mkdir zll</span><br><span class="line"><span class="built_in">cd</span> zll</span><br><span class="line">git init</span><br><span class="line"><span class="built_in">echo</span> hello &gt; README</span><br><span class="line">git add README</span><br><span class="line">git commit -m <span class="string">"first commit"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将本地设置为跟踪远程服务器</span></span><br><span class="line">git remote add origin git@newcrm.nalashop.com:~/web/lizi-tmp</span><br><span class="line">git push --<span class="built_in">set</span>-upstream origin master</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除</span></span><br><span class="line">git rm README</span><br><span class="line">git mv file_from file_to</span><br><span class="line">git <span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在提交前，将已标记为要提交的文件移除。</span></span><br><span class="line">git reset HEAD xxxFile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 取消修改</span></span><br><span class="line">git checkout -- benchmarks.rb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改最后一次提交</span></span><br><span class="line">git commit --amend</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前工作区的状态</span></span><br><span class="line">git status</span><br><span class="line"><span class="comment"># .gitignore 中可以忽略特定的文件</span></span><br><span class="line">git diff</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看远程仓库的URL</span></span><br><span class="line">git config --get remote.origin.url</span><br></pre></td></tr></table></figure>
+<h1 id="远程"><a href="#远程" class="headerlink" title="远程"></a>远程</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果使用ssh key，就不要使用https协议</span></span><br><span class="line">git remote add origin git@10.1.18.153:zhangliangliang/test.git</span><br><span class="line">git remote <span class="built_in">set</span>-url origin git@new-host:new-url</span><br><span class="line">git remote show</span><br><span class="line">git remote rm origin</span><br><span class="line">git push -u origin master:master  <span class="comment"># 第一个master是本地分支，第二个master是远程分支</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重命名</span></span><br><span class="line">git remote rename origin xx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从远程仓库上获取最新内容（不合并本地已经修改的内容）</span></span><br><span class="line"><span class="comment"># 注意：分支号前面的加号可选</span></span><br><span class="line"><span class="comment"># 如果 :local-branch-name 省略，则默认与remote-branch-name 相同</span></span><br><span class="line">git fetch remote-name  +remote-branch-name:<span class="built_in">local</span>-branchName</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从远程仓库上获取最新内容（合并本地已经修改的内容）</span></span><br><span class="line">git pull --rebase</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交到远程服务器</span></span><br><span class="line">git push remote-name [branch-name]</span><br><span class="line"></span><br><span class="line"><span class="comment">## FIXME fetch, pull 是保存到工作空间？还是状态空间？</span></span><br></pre></td></tr></table></figure>
+<h1 id="Tag"><a href="#Tag" class="headerlink" title="Tag"></a>Tag</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示本地所有tag</span></span><br><span class="line">git tag</span><br><span class="line"><span class="comment"># 显示指定前缀的tag</span></span><br><span class="line">git tag -l <span class="string">"v1.1*"</span></span><br><span class="line"><span class="comment"># 显示具体某个tag的详情</span></span><br><span class="line">git show tag-name</span><br><span class="line"><span class="comment"># 显示远程所有的分支和标签</span></span><br><span class="line">git ls-remote</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建轻量级tag（不要使用 -a -s -m 选项）</span></span><br><span class="line">git tag v1.4-lw</span><br><span class="line"><span class="comment"># 新建tag(默认是对当前状态进行tag)</span></span><br><span class="line">git tag -a new-tag-name -m some-message [commit-hash]</span><br><span class="line"><span class="comment"># 新建签名的tag(不要使用 -a 选项）</span></span><br><span class="line">git tag -s tag-name -m some-message</span><br><span class="line"><span class="comment"># 验证签名tag：会使用GPG进行验证，需要预先下载签名者的公钥</span></span><br><span class="line">git tag -v tag-name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交指定的tag到远程</span></span><br><span class="line">git push remote-name tag-name</span><br><span class="line"><span class="comment"># 提交所有的tag到远程</span></span><br><span class="line">git push remote-name --tags</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除本地tag</span></span><br><span class="line">git tag -d tag-name</span><br><span class="line"><span class="comment"># 删除远程tag</span></span><br><span class="line">git push origin :refs/tags/tag-name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检出tag</span></span><br><span class="line">git checkout tags/tag-name</span><br></pre></td></tr></table></figure>
+<h1 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建分支</span></span><br><span class="line">git branch branch-name</span><br><span class="line"><span class="comment"># 检出远程分支</span></span><br><span class="line">git checkout -b <span class="built_in">local</span>-branch-name origin/remote-branch-name</span><br><span class="line"><span class="comment"># 切换本地分支</span></span><br><span class="line">git checkout branch-name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建并切换到该新分支(等价于上述两个命令)</span></span><br><span class="line">git checkout -b new-branch-name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看本地所有分支，以及工作空间所用的分支（前缀有*号）</span></span><br><span class="line">git branch</span><br><span class="line"><span class="comment"># 查看远程分支</span></span><br><span class="line">git branch -r</span><br><span class="line"><span class="comment"># 查看所有分支（本地和远程）</span></span><br><span class="line">git branch -av</span><br><span class="line">git show-branch</span><br><span class="line"><span class="comment"># 查看当前分支是track远程的哪个分支</span></span><br><span class="line">git remote show origin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看分支最后一个提交对象</span></span><br><span class="line">git branch -v</span><br><span class="line">（分别叫做 stashing 和 commit amending）</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果有有合并冲突的文件，需要手动合并后，再使用以下命令就OK了</span></span><br><span class="line">git add merged-by-hand-file</span><br><span class="line">git commit</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将本地分支推送到远程其他分支</span></span><br><span class="line">git push &lt;REMOTENAME&gt; &lt;LOCALBRANCHNAME&gt;:&lt;REMOTEBRANCHNAME&gt; </span><br><span class="line">git push origin master:1.0.x</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除分支(本地)</span></span><br><span class="line">git branch -d branch-name</span><br><span class="line"><span class="comment"># 删除分支(远程)</span></span><br><span class="line">git push origin --delete &lt;branch_name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">###  合并分支</span></span><br><span class="line"><span class="comment">#          A---B---C 2.0.x</span></span><br><span class="line"><span class="comment">#         /</span></span><br><span class="line"><span class="comment">#    D---E---F---G master</span></span><br><span class="line"></span><br><span class="line">git checkout 2.0.x</span><br><span class="line">git rebase master</span><br><span class="line"><span class="comment">#git rebase master 2.0.x</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#                  A'--B'--C' 2.0.x</span></span><br><span class="line"><span class="comment">#                 /</span></span><br><span class="line"><span class="comment">#    D---E---F---G master</span></span><br><span class="line"></span><br><span class="line">git checkout master</span><br><span class="line">git merge 2.0.x         <span class="comment"># 这种情形是可以 fast-forwad 的</span></span><br></pre></td></tr></table></figure>
+<h1 id="远程分支"><a href="#远程分支" class="headerlink" title="远程分支"></a>远程分支</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建远程分支</span></span><br><span class="line">git push origin <span class="built_in">test</span>:master         // 提交本地<span class="built_in">test</span>分支作为远程的master分支</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并远程分支</span></span><br><span class="line">git checkout remoteBranch1                 <span class="comment"># ??? git checkout origin/branch1</span></span><br><span class="line">git push origin remoteBranch1:remoteBranch2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除远程分支</span></span><br><span class="line">git push origin :remoteBranch2</span><br></pre></td></tr></table></figure>
+<h1 id="取消本地所有修改"><a href="#取消本地所有修改" class="headerlink" title="取消本地所有修改"></a>取消本地所有修改</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 取消对文件的修改</span></span><br><span class="line">git reset --hard HEAD</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除本地未索引的文件</span></span><br><span class="line">git clean -fdx</span><br><span class="line"></span><br><span class="line">git status</span><br></pre></td></tr></table></figure>
+<h1 id="删除最后几次commit"><a href="#删除最后几次commit" class="headerlink" title="删除最后几次commit"></a>删除最后几次commit</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看提交的log，并找到想要回滚到的commit的</span></span><br><span class="line">git <span class="built_in">log</span></span><br><span class="line">git reset --hard &lt;sha1-commit-id&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h1><p>假如有新修改提交到本地了。在push前进行pull的时候，<br>git自动合并并创建了一个新的commit，其注释为 “Merge branch ‘xxx’ of git@xxxx/path/to/xxx.git into xxx”。此时，大家应当立即运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">gitk  <span class="comment"># 此时有比较复杂的路线图</span></span><br><span class="line">git rebase</span><br><span class="line">gitk  <span class="comment"># 此时就变成单线路了</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># rebase之后，会将本地的多个提交合并成一个提交，原来的多个提交的历史记录可以通过以下命令找到</span></span><br><span class="line">git reflog</span><br><span class="line">git cherry-pick 12944d8</span><br></pre></td></tr></table></figure>
+<h1 id="单个文件"><a href="#单个文件" class="headerlink" title="单个文件"></a>单个文件</h1><h2 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> path/to/file</span><br></pre></td></tr></table></figure>
+<h2 id="diff"><a href="#diff" class="headerlink" title="diff"></a>diff</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff &lt;sha1-commit-id1&gt; &lt;sha1-commit-id2&gt; path/to/file</span><br></pre></td></tr></table></figure>
+<h2 id="检出特定版本"><a href="#检出特定版本" class="headerlink" title="检出特定版本"></a>检出特定版本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout &lt;sha1-commit-id&gt; path/to/file</span><br></pre></td></tr></table></figure>
+<h2 id="无本地copy情况下，从远程仓库检出最新的指定文件"><a href="#无本地copy情况下，从远程仓库检出最新的指定文件" class="headerlink" title="无本地copy情况下，从远程仓库检出最新的指定文件"></a>无本地copy情况下，从远程仓库检出最新的指定文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git ls-remote git@git.test.me:/path/to/git/repo</span><br><span class="line">git archive --remote=git@git.test.me:/path/to/git/repo refs/heads/<span class="built_in">test</span> path/to/file  --format zip -o /tmp/a.zip</span><br><span class="line"><span class="built_in">cd</span> /tmp/</span><br><span class="line">unzip /tmp/a.zip</span><br><span class="line">cp path/to/file /path/to/dest</span><br></pre></td></tr></table></figure>
+<h2 id="无本地copy情况下，从远程仓库检出指定版本的指定文件"><a href="#无本地copy情况下，从远程仓库检出指定版本的指定文件" class="headerlink" title="无本地copy情况下，从远程仓库检出指定版本的指定文件"></a>无本地copy情况下，从远程仓库检出指定版本的指定文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先通过SSH登录到远程仓库，看一下test分支上指定文件的最近3条日志，找到所需的commit SHA1.</span></span><br><span class="line">ssh git@git.test.me <span class="string">"cd /path/to/git/repo &amp;&amp; git log -n 3 test -- path/to/file"</span></span><br><span class="line">git archive --remote=git@git.test.me:/path/to/git/repo d787416b0aec88747075ef0f5909bc4f863aa26e path/to/file  --format zip -o /tmp/a.zip</span><br><span class="line"><span class="built_in">cd</span> /tmp/</span><br><span class="line">unzip /tmp/a.zip</span><br><span class="line">cp path/to/file /path/to/dest</span><br></pre></td></tr></table></figure>
+<h1 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/target-eclipse/classes</span><br><span class="line">/web-app/WEB-INF/classes</span><br><span class="line">/target/</span><br><span class="line">/out/</span><br><span class="line">/test/</span><br><span class="line">/overlays/</span><br><span class="line">/db/</span><br><span class="line">.classpath</span><br><span class="line">.settings/</span><br><span class="line">.project</span><br><span class="line">.idea/</span><br><span class="line">.DS_Store</span><br><span class="line">*.iml</span><br><span class="line">*.ipr</span><br><span class="line">*.iws</span><br><span class="line">*.swp</span><br><span class="line">*.log</span><br></pre></td></tr></table></figure>
+<p>注意：如果要忽略特定的目录中的文件，但还想在远程仓库中保持该目录，则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">emptyDir/*</span><br><span class="line">!emptyDir/.gitkeep</span><br></pre></td></tr></table></figure>
+<h1 id="撤销提交"><a href="#撤销提交" class="headerlink" title="撤销提交"></a>撤销提交</h1><h2 id="编辑最后一次本地提交"><a href="#编辑最后一次本地提交" class="headerlink" title="编辑最后一次本地提交"></a>编辑最后一次本地提交</h2><p>也即，本地已经commit，但是没push到远程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git reset --soft HEAD~1             <span class="comment"># 先reset，会copy HEAD为.git/ORIG_HEAD</span></span><br><span class="line">doSomeEdit</span><br><span class="line">git add .</span><br><span class="line">git commit -c ORIG_HEAD             <span class="comment"># 使用原来的commit消息，并提交</span></span><br></pre></td></tr></table></figure>
+<h2 id="本地已经commit，也已经push到远程，但其他开发人员尚未拉取"><a href="#本地已经commit，也已经push到远程，但其他开发人员尚未拉取" class="headerlink" title="本地已经commit，也已经push到远程，但其他开发人员尚未拉取"></a>本地已经commit，也已经push到远程，但其他开发人员尚未拉取</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -f                         <span class="comment"># 本地修改之后，强制提交</span></span><br></pre></td></tr></table></figure>
+<h2 id="本地已经commit，也已经push到远程，但其他开发人员已经拉取，且进行了多次提交"><a href="#本地已经commit，也已经push到远程，但其他开发人员已经拉取，且进行了多次提交" class="headerlink" title="本地已经commit，也已经push到远程，但其他开发人员已经拉取，且进行了多次提交"></a>本地已经commit，也已经push到远程，但其他开发人员已经拉取，且进行了多次提交</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rever &lt;commit-id&gt;               <span class="comment"># 该方法通过在最新commit之后新建一个commit来达到回滚的效果。</span></span><br></pre></td></tr></table></figure>
+<h1 id="统计"><a href="#统计" class="headerlink" title="统计"></a>统计</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 一定时期内的代码提交次数</span><br><span class="line">git log --after=2015-01-01 --before=2016-03-01 --pretty=&apos;%ae&apos; | sort | uniq -c | sort -k1 -n -r</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 统计代码修改量</span><br><span class="line">git log --after=2015-01-01 --before=2016-03-01 --pretty=&apos;%an&apos; | sort -u</span><br><span class="line">git log --author=&quot;btpka3&quot; --pretty=tformat: --numstat \</span><br><span class="line">    | gawk &apos;&#123; add += $1 ; subs += $2 ; loc += $1 - $2 &#125; \</span><br><span class="line">    END &#123; printf &quot;added lines: %s removed lines : %s total lines: %s\n&quot;,add,subs,loc &#125;&apos; -</span><br><span class="line"></span><br><span class="line"># gitstats</span><br><span class="line">gitstats -c project_name=qh-app \</span><br><span class="line">    -c commit_begin=`git log --date-order --date=iso --before=2015-01-01 -n 1 --pretty=&apos;%H&apos;` \</span><br><span class="line">    -c commit_end=`git log --date-order --date=iso --before=2016-03-01  -n 1 --pretty=&apos;%H&apos;`  \</span><br><span class="line">    qh-app \</span><br><span class="line">    stat/qh-app</span><br></pre></td></tr></table></figure>
+<h1 id="sync"><a href="#sync" class="headerlink" title="sync"></a>sync</h1><h2 id="repo"><a href="#repo" class="headerlink" title="repo"></a>repo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone http://git.oschina.net/btpka3/btpka3.wiki.git</span><br><span class="line">cd btpka3.wiki</span><br><span class="line">git remote add gitlab git@git.kingsilk.xyz:btpka3/btpka3.wiki.git</span><br><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+<h2 id="crontab"><a href="#crontab" class="headerlink" title="crontab"></a>crontab</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 */1  *   *   *   /home/zll/work/git-repo/oschina/sync-wiki.sh 2&gt;&amp;1 &gt;&gt;  /home/zll/work/git-repo/oschina/sync-wiki.log</span><br></pre></td></tr></table></figure>
+<h2 id="sync-wiki-sh"><a href="#sync-wiki-sh" class="headerlink" title="sync-wiki.sh"></a>sync-wiki.sh</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">TIME=&quot;date +%Y-%m-%d.%H:%M:%S&quot;</span><br><span class="line"></span><br><span class="line">cd /home/zll/work/git-repo/oschina/btpka3.wiki</span><br><span class="line">echo `$TIME` pull from gitlab</span><br><span class="line">git pull --rebase gitlab master</span><br><span class="line">[ $? = 0 ] || exit -1</span><br><span class="line"></span><br><span class="line">echo `$TIME` pull from oschina</span><br><span class="line">git pull --rebase origin master</span><br><span class="line">[ $? = 0 ] || exit -1</span><br><span class="line"></span><br><span class="line">echo `$TIME` push to oschina</span><br><span class="line">git push origin master:master</span><br><span class="line">[ $? = 0 ] || exit -1</span><br><span class="line"></span><br><span class="line">echo `$TIME` push to oschina</span><br><span class="line">git push -f gitlab master:master</span><br><span class="line">[ $? = 0 ] || exit -1</span><br><span class="line"></span><br><span class="line">echo `$TIME` Done.</span><br></pre></td></tr></table></figure>
+<h2 id="pull-request-merge-request"><a href="#pull-request-merge-request" class="headerlink" title="pull request, merge request"></a>pull request, merge request</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 开发人员fork一个要修改的分支(比如 "master")，修改、测试、并推送到远程（比如：远程分支 "zll-123")</span></span><br><span class="line"><span class="comment"># 2. 要合并的人员进行以下操作：</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.0 先获取最新</span></span><br><span class="line">git pull --all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.1 先获取最新，并检出经过修改的分支</span></span><br><span class="line">git fetch origin</span><br><span class="line">git checkout -b zll-123 origin/zll-123</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.2 再检出要合并到的目标分支，</span></span><br><span class="line">git checkout master</span><br><span class="line">git merge --no-ff zll-123</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.3 进行代码审查和测试</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.4 推送的远程</span></span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+<h2 id="change-remote"><a href="#change-remote" class="headerlink" title="change remote"></a>change remote</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">APP=xhs</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;APP&#125;</span></span><br><span class="line">git status .</span><br><span class="line">git branch -av</span><br><span class="line">git remote -v</span><br><span class="line">git remote rm origin</span><br><span class="line">git remote add origin git@gitlab.com:kingsilk/<span class="variable">$&#123;APP&#125;</span>.git</span><br><span class="line">git fetch</span><br><span class="line">git branch --<span class="built_in">set</span>-upstream-to=origin/master master</span><br><span class="line">git remote -v</span><br><span class="line">git pull</span><br><span class="line"><span class="built_in">cd</span> ..</span><br></pre></td></tr></table></figure>
+<h2 id="transfer"><a href="#transfer" class="headerlink" title="transfer"></a>transfer</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /tmp</span><br><span class="line">git <span class="built_in">clone</span> root@192.168.0.12:/home/git/repositories/kingsilk/env.wiki.git</span><br><span class="line"><span class="built_in">cd</span> env.wiki</span><br><span class="line">git remote show</span><br><span class="line">git remote rm origin</span><br><span class="line">git remote add origin git@gitlab.com:kingsilk/qh-env.wiki.git</span><br><span class="line">git push -u origin --all</span><br><span class="line">git push -u origin --tags</span><br><span class="line"><span class="built_in">cd</span> ..</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/27/Java/taskScheduler/Timer/" rel="next" title="TimerTask">
+                <i class="fa fa-chevron-left"></i> TimerTask
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/18/Python/scrapy/scrapy-error/" rel="prev" title="Scrapy踩过的那些坑">
+                Scrapy踩过的那些坑 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">京九-猿</p>
+              <p class="site-description motion-element" itemprop="description">万物皆虚，万事皆允</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#记住密码"><span class="nav-number">1.</span> <span class="nav-text">记住密码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-lfs"><span class="nav-number">2.</span> <span class="nav-text">git lfs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-archive"><span class="nav-number">3.</span> <span class="nav-text">git archive</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置"><span class="nav-number">4.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代理"><span class="nav-number">5.</span> <span class="nav-text">代理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-协议"><span class="nav-number">5.1.</span> <span class="nav-text">git 协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#镜像"><span class="nav-number">5.2.</span> <span class="nav-text">镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http-https-协议"><span class="nav-number">5.3.</span> <span class="nav-text">http, https 协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-协议-1"><span class="nav-number">5.4.</span> <span class="nav-text">git 协议</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建仓库"><span class="nav-number">6.</span> <span class="nav-text">创建仓库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#远程"><span class="nav-number">7.</span> <span class="nav-text">远程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tag"><span class="nav-number">8.</span> <span class="nav-text">Tag</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Branch"><span class="nav-number">9.</span> <span class="nav-text">Branch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#远程分支"><span class="nav-number">10.</span> <span class="nav-text">远程分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#取消本地所有修改"><span class="nav-number">11.</span> <span class="nav-text">取消本地所有修改</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除最后几次commit"><span class="nav-number">12.</span> <span class="nav-text">删除最后几次commit</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rebase"><span class="nav-number">13.</span> <span class="nav-text">rebase</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单个文件"><span class="nav-number">14.</span> <span class="nav-text">单个文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看日志"><span class="nav-number">14.1.</span> <span class="nav-text">查看日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#diff"><span class="nav-number">14.2.</span> <span class="nav-text">diff</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检出特定版本"><span class="nav-number">14.3.</span> <span class="nav-text">检出特定版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无本地copy情况下，从远程仓库检出最新的指定文件"><span class="nav-number">14.4.</span> <span class="nav-text">无本地copy情况下，从远程仓库检出最新的指定文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无本地copy情况下，从远程仓库检出指定版本的指定文件"><span class="nav-number">14.5.</span> <span class="nav-text">无本地copy情况下，从远程仓库检出指定版本的指定文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gitignore"><span class="nav-number">15.</span> <span class="nav-text">.gitignore</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#撤销提交"><span class="nav-number">16.</span> <span class="nav-text">撤销提交</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编辑最后一次本地提交"><span class="nav-number">16.1.</span> <span class="nav-text">编辑最后一次本地提交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地已经commit，也已经push到远程，但其他开发人员尚未拉取"><span class="nav-number">16.2.</span> <span class="nav-text">本地已经commit，也已经push到远程，但其他开发人员尚未拉取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地已经commit，也已经push到远程，但其他开发人员已经拉取，且进行了多次提交"><span class="nav-number">16.3.</span> <span class="nav-text">本地已经commit，也已经push到远程，但其他开发人员已经拉取，且进行了多次提交</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#统计"><span class="nav-number">17.</span> <span class="nav-text">统计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sync"><span class="nav-number">18.</span> <span class="nav-text">sync</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#repo"><span class="nav-number">18.1.</span> <span class="nav-text">repo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#crontab"><span class="nav-number">18.2.</span> <span class="nav-text">crontab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sync-wiki-sh"><span class="nav-number">18.3.</span> <span class="nav-text">sync-wiki.sh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pull-request-merge-request"><span class="nav-number">18.4.</span> <span class="nav-text">pull request, merge request</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#change-remote"><span class="nav-number">18.5.</span> <span class="nav-text">change remote</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#transfer"><span class="nav-number">18.6.</span> <span class="nav-text">transfer</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">京九-猿</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+  <!--
+  <script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  -->
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("yckaBYQ319mO4VlCNOqc6228-gzGzoHsz", "yGBbL1gXFa7mmTulVNz8Ltst");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
